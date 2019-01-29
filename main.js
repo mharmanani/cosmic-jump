@@ -4,8 +4,7 @@ var mainState = {
         // This function will be executed at the beginning     
         // That's where we load the images and sounds 
         game.load.image('player', 'assets/birdy.png'); 
-        game.load.image('pipe', 'assets/bird.png');
-        game.load.image('rock', 'assets/pipe.png')
+        game.load.image('rock', 'assets/rock.png')
         game.load.image('cloud', 'assets/icns_clouds128.png');
         game.load.image('ufo', 'assets/ufo.png');
         game.load.image('meteor', 'assets/meteor128.png');
@@ -205,7 +204,7 @@ var mainState = {
         game.physics.arcade.enable(dead);
 
         restartMsg = game.add.text(45, 300, "0", 
-            { font: "30px Helvetica", fill: "#ffffff" });
+            { font: "25px Courier", fill: "#ffffff" });
         restartMsg.text = "Press ENTER to restart";
 
         var restartKey = game.input.keyboard.addKey(
