@@ -204,6 +204,10 @@ var mainState = {
         var dead = game.add.sprite(45, 90, 'dead');
         game.physics.arcade.enable(dead);
 
+        restartMsg = game.add.text(45, 100, "0", 
+            { font: "30px Helvetica", fill: "#ffffff" });
+        restartMsg.text = "Press ENTER to restart";
+
         var restartKey = game.input.keyboard.addKey(
                     Phaser.Keyboard.ENTER);
         restartKey.onDown.add(this.restartGame, this); 
