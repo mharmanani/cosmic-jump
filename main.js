@@ -77,7 +77,7 @@ var mainState = {
     // Make the bird jump 
     jump: function() {
         if (this.bird.alive == false) 
-            this.restartGame();  
+            return;
 
         this.jumpSound.play();
         this.bird.body.velocity.y = -350;
