@@ -39,7 +39,7 @@ var mainState = {
         spaceKey.onDown.add(this.jump, this); 
 
         if (this.bird.y < 0 || this.bird.y > 490) {
-            this.restartGame();
+            this.die();
         }
 
         this.projectiles = game.add.group(); 
@@ -200,6 +200,11 @@ var mainState = {
             p.body.velocity.x = 0;
         }, this);
 
+        this.die();
+
+    }, 
+
+    die: function() {
         var dead = game.add.sprite(45, 90, 'dead');
         game.physics.arcade.enable(dead);
 
@@ -210,8 +215,7 @@ var mainState = {
         var restartKey = game.input.keyboard.addKey(
                     Phaser.Keyboard.ENTER);
         restartKey.onDown.add(this.restartGame, this); 
-
-    }, 
+    },
 
 };
 
