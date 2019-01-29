@@ -5,8 +5,12 @@ A simple flappy bird-like game where the player must dodge incoming projectiles 
 **Background music**: Purple Planet - Piano at Night (https://www.purple-planet.com/)
 **Inspired by** the following tutorial: http://www.lessmilk.com/tutorial/flappy-bird-phaser-1
 **Images created by**:
-__iconfinder.com/Chanut-is__ (Meteor sprite)
-__https://www.deviantart.com/emey87__ (Player/Bird sprite)
-__iconfinder.com/pocike__ (Gold coin sprite)
-__https://www.deviantart.com/raindropmemory__ (Boulder sprite)
-__iconfinder.com/Rudityas__ (UFO sprite)
+__iconfinder.com/Chanut-is__ (Meteor sprite)  
+
+__https://www.deviantart.com/emey87__ (Player/Bird sprite)  
+
+__iconfinder.com/pocike__ (Gold coin sprite)  
+
+__https://www.deviantart.com/raindropmemory__ (Boulder sprite)  
+
+__iconfinder.com/Rudityas__ (UFO sprite)  
