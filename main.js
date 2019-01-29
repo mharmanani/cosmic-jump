@@ -68,8 +68,10 @@ var mainState = {
     },
 
     incrementScore: function() {
-        this.score++;
-        this.labelScore.text = this.score; 
+        if (this.bird.alive) {
+            this.score++;
+            this.labelScore.text = this.score; 
+        }
     },
 
     // Make the bird jump 
