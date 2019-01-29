@@ -47,7 +47,7 @@ var mainState = {
         this.coins = game.add.group();
         this.timer_coins = game.time.events.loop(1700, this.addCoinCluster, this);
         this.timer_rocks = game.time.events.loop(1700, this.spawnProjectile, this); 
-        this.timer_clouds = game.time.events.loop(1900, this.addCloudCluster, this);
+        this.timer_clouds = game.time.events.loop(5500, this.addCloudCluster, this);
         this.timer_ufo = game.time.events.loop(3000, this.spawnUFO, this);
         this.timer_metor = game.time.events.loop(6000, this.spawnMeteor, this);
 
@@ -120,7 +120,7 @@ var mainState = {
 
         game.physics.arcade.enable(ufo);
 
-        ufo.body.velocity.x = -800; 
+        ufo.body.velocity.x = -500; 
         ufo.checkWorldBounds = true;
         ufo.outOfBoundsKill = true;
     },
@@ -142,8 +142,7 @@ var mainState = {
         this.clouds.add(cloud);
 
         game.physics.arcade.enable(cloud);
-        cloud.body.velocity.x = -700; 
-        cloud.body.velocity.y = 5;
+        cloud.body.velocity.x = -100; 
 
         cloud.checkWorldBounds = true;
         cloud.outOfBoundsKill = true;
@@ -152,7 +151,7 @@ var mainState = {
     addCloudCluster: function() {
         this.addCloud(400, 5); 
         this.addCloud(430, 10); 
-        this.addCloud(420, 17); 
+        this.addCloud(420, 35); 
         this.addCloud(380, 1); 
     },
 
@@ -181,15 +180,11 @@ var mainState = {
     }, 
     
     collide: function() {
-        // If the bird has already hit a pipe, do nothing
-        // It means the bird is already falling off the screen
         if (this.bird.alive == false)
             return;
 
-        // Set the alive property of the bird to false
         this.bird.alive = false;
 
-        // Prevent new pipes from appearing
         game.time.events.remove(this.timer_coins);
         game.time.events.remove(this.timer_rocks);
         game.time.events.remove(this.timer_clouds);
@@ -222,3 +217,7 @@ var mainState = {
 var game = new Phaser.Game(400, 490);
 game.state.add('main', mainState); 
 game.state.start('main');
+
+window.onload = function() {
+    document.getElementById('h1').value = this.game.state.score;
+}
