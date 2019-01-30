@@ -15,9 +15,6 @@ var mainState = {
 
         game.load.audio('jump', 'assets/jump.wav'); 
         game.load.audio('piano', 'assets/purple_planet_piano_at_night.wav');
-
-        game.load.json('data', 'data.json');
-
     },
 
     create: function() { 
@@ -54,7 +51,7 @@ var mainState = {
         this.timer_ufo = game.time.events.loop(3000, this.spawnUFO, this);
         this.timer_meteor = game.time.events.loop(6000, this.spawnMeteor, this);
 
-        this.timer_survival_bonus = game.time.events.loop(900000, function() {
+        this.timer_survival_bonus = game.time.events.loop(300000, function() {
             this.score *= 2;
             this.labelScore.text = score;
         }, this);
@@ -63,8 +60,8 @@ var mainState = {
         this.score = 0;
         this.labelScore = game.add.text(20, 20, "0", 
             { font: "30px Helvetica", fill: "#ffffff" });
-        this.labelHighScore = game.add.text(330, 450, "Best: " + this.highest, 
-            { font: "15px Helvetica", fill: "#00ffaa" });
+        this.labelHighScore = game.add.text(320, 450, "Best: " + this.highest, 
+            { font: "15px Helvetica", fill: "#00ff55" });
 
     },
 
@@ -219,8 +216,8 @@ var mainState = {
         var dead = game.add.sprite(45, 90, 'dead');
         game.physics.arcade.enable(dead);
 
-        restartMsg = game.add.text(45, 300, "0", 
-            { font: "25px Courier", fill: "#ffffff" });
+        restartMsg = game.add.text(70, 300, "0", 
+            { font: "20px Courier", fill: "#ffffff" });
         restartMsg.text = "Press ENTER to restart";
 
         var restartKey = game.input.keyboard.addKey(
