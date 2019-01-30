@@ -1,4 +1,5 @@
-// Create our 'main' state that will contain the game
+localStorage.highscore = localStorage.highscore || 0;
+
 var mainState = {
     preload: function() { 
         // This function will be executed at the beginning     
@@ -14,6 +15,8 @@ var mainState = {
 
         game.load.audio('jump', 'assets/jump.wav'); 
         game.load.audio('piano', 'assets/purple_planet_piano_at_night.wav');
+
+        game.load.json('data', 'data.json');
 
     },
 
@@ -49,11 +52,19 @@ var mainState = {
         this.timer_rocks = game.time.events.loop(1700, this.spawnProjectile, this); 
         this.timer_clouds = game.time.events.loop(5500, this.addCloudCluster, this);
         this.timer_ufo = game.time.events.loop(3000, this.spawnUFO, this);
-        this.timer_metor = game.time.events.loop(6000, this.spawnMeteor, this);
+        this.timer_meteor = game.time.events.loop(6000, this.spawnMeteor, this);
 
+        this.timer_survival_bonus = game.time.events.loop(900000, function() {
+            this.score *= 2;
+            this.labelScore.text = score;
+        }, this);
+
+        this.highest = localStorage.highscore; //game.cache.getJSON('data');
         this.score = 0;
         this.labelScore = game.add.text(20, 20, "0", 
             { font: "30px Helvetica", fill: "#ffffff" });
+        this.labelHighScore = game.add.text(330, 450, "Best: " + this.highest, 
+            { font: "15px Helvetica", fill: "#00ffaa" });
 
     },
 
@@ -189,14 +200,19 @@ var mainState = {
         game.time.events.remove(this.timer_rocks);
         game.time.events.remove(this.timer_clouds);
         game.time.events.remove(this.timer_ufo);
-        game.time.events.remove(this.timer_metor);
+        game.time.events.remove(this.timer_meteor);
 
         this.projectiles.forEach(function(p) {
             p.body.velocity.x = 0;
         }, this);
 
-        this.die();
+        localStorage.setItem('score',this.score);
+        if (this.highest <= this.score) {
+            this.highest = this.score;
+        }
 
+        localStorage.highscore = this.highest;
+        this.die();
     }, 
 
     die: function() {
@@ -211,13 +227,8 @@ var mainState = {
                     Phaser.Keyboard.ENTER);
         restartKey.onDown.add(this.restartGame, this); 
     },
-
 };
 
 var game = new Phaser.Game(400, 490);
 game.state.add('main', mainState); 
 game.state.start('main');
-
-window.onload = function() {
-    document.getElementById('h1').value = this.game.state.score;
-}
