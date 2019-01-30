@@ -2,13 +2,15 @@
 <html>
     <head>  
         <meta charset="utf-8" />
-        <title> Flappy Bird in Space </title>
+        <title> Cosmic Jump </title>
         <link rel="icon" href="assets/birdy.png">
         <script type="text/javascript" src="phaser.min.js"></script>
         <script type="text/javascript" src="main.js"></script>
     </head>
 
     <body>
-
+    	<?php
+    		if (isset($_SESSION['highscore'])) echo $_SESSION['highscore']; 
+    	?>
     </body>  
 </html>  
