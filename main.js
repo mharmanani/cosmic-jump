@@ -51,10 +51,7 @@ var mainState = {
         this.timer_ufo = game.time.events.loop(3000, this.spawnUFO, this);
         this.timer_meteor = game.time.events.loop(6000, this.spawnMeteor, this);
 
-        this.timer_survival_bonus = game.time.events.loop(300000, function() {
-            this.score *= 2;
-            this.labelScore.text = score;
-        }, this);
+        this.timer_survival_add = game.time.events.loop(5000, this.incrementScore, this);
 
         this.highest = localStorage.highscore; //game.cache.getJSON('data');
         this.score = 0;
@@ -62,6 +59,13 @@ var mainState = {
             { font: "30px Helvetica", fill: "#ffffff" });
         this.labelHighScore = game.add.text(320, 450, "Best: " + this.highest, 
             { font: "15px Helvetica", fill: "#00ff55" });
+
+        this.timer_survival_bonus = game.time.events.loop(60000, function () {
+            if (this.bird.alive) {
+                this.score = this.score * 2;
+                this.labelScore.text = this.score;
+            }
+        }, this);
 
     },
 
