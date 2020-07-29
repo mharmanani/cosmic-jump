@@ -1,4 +1,4 @@
-# Flappy Bird in Space
+# Cosmic Jump
 A simple flappy bird-like game where the player must dodge incoming projectiles and collect coins in space rather than jump over pipes. Mostly written in JavaScript with the help of the Phaser framework.
 
 ## Acknowledgements  
